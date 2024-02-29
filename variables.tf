@@ -4,9 +4,17 @@ variable "account_name" {
   default     = ""
 }
 
+variable "email" {
+  description = "email address for receiving alerts"
+##  type        = string
+  default     = ["anne@icsi.berkeley.edu"]
+}
+
+
 variable "account_budget_limit" {
   description = "Set the budget limit for the AWS account."
   type        = string
+  default     = 1.0
 }
 
 variable "budget_limit_unit" {
@@ -21,33 +29,26 @@ variable "budget_time_unit" {
   default     = "MONTHLY"
 }
 
-variable "services" {
-  description = "Define the list of services and their limit of budget."
-  type = map(object({
-    budget_limit = string
-  }))
-}
-
-variable "notifications" {
-  description = "Can be used multiple times to configure budget notification thresholds."
-  type = map(object({
-    comparison_operator = string
-    threshold           = number
-    threshold_type      = string
-    notification_type   = string
-  }))
-}
+#variable "notifications" {
+#  description = "Can be used multiple times to configure budget notification thresholds."
+#  type = map(object({
+#    comparison_operator = string
+#    threshold           = number
+#    threshold_type      = string
+#    notification_type   = string
+#  }))
+#}
 
 variable "slack_channel_id" {
   type        = string
-  description = "The ID of the Slack channel. For example, ABCBBLZZZ. (Should be set when create_slack_integration is enabled)."
-  default     = ""
+  description = "The ID of the Slack channel. (Should be set when create_slack_integration is enabled)."
+  default     = "C06LQQ371V5"
 }
 
 variable "slack_workspace_id" {
   type        = string
   description = "The ID of the Slack workspace authorized with AWS Chatbot. (Should be set when create_slack_integration is enabled)."
-  default     = ""
+  default     = "T01AXCG4SP4"
 }
 
 variable "create_slack_integration" {
